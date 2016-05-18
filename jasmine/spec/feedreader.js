@@ -59,19 +59,19 @@ $(function() {
 	});
 
 
-	/* TODO: Write a new test suite named "The menu" */
+	/*  Write a new test suite named "The menu" */
 
 	describe('The menu', function() {
 
 		/* Test n°4: menu hidden
 		 */
 		it('is hidden by default', function() {
-			var className = $('body').attr('class');
+			var className = $('body').hasClass('menu-hidden');
 			// the class "menu-hidden" is the trigger for
 			// the sliding menu. 
 			// When the class is toggled the menu is hidden.
 			// When it is absent the menu will be visible
-			expect(className).toBe('menu-hidden');
+			expect(className).toBe(true);
 		});
 
 		 /* Test n°5: the click function
@@ -83,19 +83,19 @@ $(function() {
 			
 			// it should tricker the first click and erase the classname
 			menuIcon.click();
-			var className = $('body').attr('class');
+			var className = $('body').hasClass('menu-hidden');
 
-			expect(className).not.toBe('menu-hidden');
+			expect(className).toBe(false);
 
 
 			// it should tricker the second click and make the classname reapper
 			menuIcon.click();
-			className = $('body').attr('class');
-			expect(className).toBe('menu-hidden');
+			className = $('body').hasClass('menu-hidden');
+			expect(className).toBe(true);
 		});
 	});
 
-	/* TODO: Write a new test suite named "Initial Entries" */
+	/* Write a new test suite named "Initial Entries" */
 
 	describe('Initial Entries', function() {
 		/* Test n°7: testing for a feed entry
@@ -107,14 +107,14 @@ $(function() {
 		});
 
 		it('should load initial value', function(done) {
-			var container = $('.entry').html();
+			var container = $('.feed .entry').html();
 
 			expect(container).not.toBeFalsy();
 			done();
 		});
 	});
 
-	/* TODO: Write a new test suite named "New Feed Selection" */
+	/* Write a new test suite named "New Feed Selection" */
 
 
 	describe('New Feed Selection', function () {
@@ -132,12 +132,12 @@ $(function() {
 			var i = Math.ceil(Math.random() * (allFeeds.length - 1));
 
 			loadFeed(i, done);
-			TestFeed = ($('.entry').html());	
+			TestFeed = ($('.feed .entry').html());	
 		});
 
 		it('should load a different feed', function(done) {
 			loadFeed(0); 
-			FeedText = ($('.entry').html());
+			FeedText = ($('.feed .entry').html());
 			
 			expect(TestFeed).not.toEqual(FeedText);
 
