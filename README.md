@@ -1,3 +1,4 @@
+
 # Feedreader and Jasmine Testing
 
 Authors
@@ -30,6 +31,14 @@ Used resources
 
 * [**Google Loader API**](https://developers.google.com/loader/), used for loading the RSS feeds
 
+How to use
+----
+
+1. Clone the [Repo](https://github.com/guillaumesimler/nanofep8)
+2. Launch Index.html in your browser
+3. try and enjoy 
+
+or simply use the [following site](http://guillaumesimler.github.io/nanofep8/)
 
 Discussions about tests
 ----
@@ -93,7 +102,7 @@ Otherwise I could loop all elements, push their results in an array and check wh
 
 Repository 
 ----
-
+* the [hosted application](http://guillaumesimler.github.io/nanofep8/)
 * the [working project](https://github.com/guillaumesimler/nanofep8)
 
 License
