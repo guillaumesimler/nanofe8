@@ -93,7 +93,7 @@ Otherwise I could loop all elements, push their results in an array and check wh
 
 Repository 
 ----
-
+* the [hosted application](http://guillaumesimler.github.io/nanofep8/)
 * the [working project](https://github.com/guillaumesimler/nanofep8)
 
 License
