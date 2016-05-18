@@ -136,7 +136,14 @@ $(function() {
 		var FeedText, TestFeed;
 
 		beforeEach( function(done) {
-			loadFeed(1, done);
+
+			/* As loading all three possible matches will lead to
+			 * a high performance lag (one does already), the test
+			 * will pick a ramdom index number above 0.
+			*/
+			var i = Math.ceil(Math.random() * (allFeeds.length - 1));
+
+			loadFeed(i, done);
 			TestFeed = ($('.entry').html());	
 		});
 
