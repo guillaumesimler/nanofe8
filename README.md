@@ -1,39 +1,102 @@
-# Project Overview
+# Feedreader and Jasmine Testing
 
-In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
+Authors
+----
+* the initial program was designed by the [udacity team](https://github.com/udacity/frontend-nanodegree-feedreader/graphs/contributors) under the lead of [Mike Wales](https://www.linkedin.com/in/michaelwales)
+
+* the **adaptation** was done by **Guillaume Simler**, a Udacity Frontend Nanodegree, more information and contact details on my [Github profile](https://github.com/guillaumesimler)
+
+Project description
+----
+
+The aim of this project is to train how to use of testing suite, especially Jasmine.js. 
+
+The **original README** can be found on the [initial Github repo](https://github.com/udacity/frontend-nanodegree-feedreader/blob/master/README.md)
+
+Most of the works were done in **.\jasmine\spec\feedreader.js**. The other files were left untouched save
+* **Readme** which was updated
+* **index.html** which was commented for better understanding its structure. 
+
+Used resources
+----
+
+### Libraries & frameworks
+
+* [**handlebars**](http://handlebarsjs.com/)
+* [**jquery**](https://jquery.com/)
+* [**Google Loader API**](https://developers.google.com/loader/), used for loading the RSS feeds
+
+### APIs
+
+* [**google maps api**](https://developers.google.com/maps/?hl=en)
 
 
-## Why this Project?
+Discussions about tests
+----
 
-Testing is an important part of the development process and many organizations practice a standard of development known as "test-driven development". This is when developers write tests first, before they ever start developing their application. All the tests initially fail and then they start writing application code to make these tests pass.
+#### General comments
 
-Whether you work in an organization that uses test-driven development or in an organization that uses tests to make sure future feature development doesn't break existing features, it's an important skill to have!
+There is no real right and wrong once a test is working. There are more **suitable tests** than others. This section will be used to discuss the tests choosen and potential alternatives.
 
+#### Test n°1
 
-## What will I learn?
+There is not much to say as it was already given. The test is pretty trivial
+1. The object must be defined
+2. The object must have more than one elements
 
-You will learn how to use Jasmine to write a number of tests against a pre-existing application. These will test the underlying business logic of the application as well as the event handling and DOM manipulation.
+#### Test n°2
 
+The first expectation is quite obvious: the url attribute must be defined. 
 
-## How will this help my career?
+The second choice might be subject to discussion. I choose a compromise:
+* The value of feed.url must not be falsy. With this option you can the safety not to have a blank, a null, an undefined value.
+* Of course not beeing falsy is equal of being truthy (toBeTruthy() )
 
-* Writing effective tests requires analyzing multiple aspects of an application including the HTML, CSS and JavaScript - an extremely important skill when changing teams or joining a new company.
-* Good tests give you the ability to quickly analyze whether new code breaks an existing feature within your codebase, without having to manually test all of the functionality.
+**But** __is it enough__? Certainly one could move to a custom matcher in order to be more certain to have an url. 
+We would test if feed.url is 
+* a string
+* and starts with http:// or https://
 
+#### Test n°3
 
-# How will I complete this project?
+The third test is similar to the second test without the discussion about the name. You mmight however want to test if it is a string
 
-1. ~~Download the [required project assets](http://github.com/udacity/frontend-nanodegree-feedreader).~~
-2. ~~Review the functionality of the application within your browser.~~
-3. ~~Explore the application's HTML (*./index.html*), CSS (*./css/style.css*) and JavaScript (*./js/app.js*) to gain an understanding of how it works.~~
-4. ~~Explore the Jasmine spec file in *./jasmine/spec/feedreader.js* ~~
-5. Edit the allFeeds variable in *./js/app.js* to make the provided test fail and see how Jasmine visualizes this failure in your application.
-6. Return the allFeeds variable to a passing state.
-7. ~~Write a test that loops through each feed in the allFeeds object and ensures it has a URL defined and that the URL is not empty.~~
-8. ~~Write a test that loops through each feed in the allFeeds object and ensures it has a name defined and that the name is not empty~~.
-9. Write a new test suite named "The menu".
-10. Write a test that ensures the menu element is hidden by default. You'll have to analyze the HTML and the CSS to determine how we're performing the hiding/showing of the menu element.
-11. Write a test that ensures the menu changes visibility when the menu icon is clicked. This test should have two expectations: does the menu display when clicked and does it hide when clicked again.
-12. Write a test that ensures when the loadFeed function is called and completes its work, there is at least a single .entry element within the .feed container. Remember, loadFeed() is asynchronous so this test wil require the use of Jasmine's beforeEach and asynchronous done() function.
-13. Write a test that ensures when a new feed is loaded by the loadFeed function that the content actually changes. Remember, loadFeed() is asynchronous.
-14. When complete - all of your tests should pass.
+#### Test n°4
+
+The sliding menu is managed by the presence or the absence of the class **"menu-hidden"** attached to the **body tag**:
+* when the class is toggled, the menu will be invisible (which is the standard approach)
+* when it is untoggled (__by clicking on the hamburger slides__) the class is removed
+
+So the obvious test is to check that this class name is toggled 
+
+#### Test n°5
+
+This test is pretty trivial when reading the description of test n°4, especially after discovering the [$.click() function](https://api.jquery.com/click/). 
+
+As the program starts with the class 'menu-hidden' in, the first click should toggle it off. (First expectation)
+The second click should toggle it in again (second expectation).
+
+#### Test n°6 
+
+Let's put aside the obvious __asynchronous challenge__. The test is based on the used templating system:
+* if the template does not work, there would be no **class ".entry"**
+* if the feed call does not work, there would be no "html" value
+
+#### Test n°7
+
+This test might be subject to discussions as this is a clear **trade off**. Each asynchronous test
+is a burden for the performance of the application,
+
+So instead of loading all other indexes (than the standard 0), I took the liberty to take only one generated randomly from all potential suspect. 
+
+Otherwise I could loop all elements, push their results in an array and check whether they are different from the index[0].
+
+Repository 
+----
+
+* the [working project](https://github.com/guillaumesimler/nanofe8)
+
+License
+----
+
+The **current version** is under [_MIT License_](https://github.com/guillaumesimler/nanofe8/blob/master/LICENSE.txt) 
