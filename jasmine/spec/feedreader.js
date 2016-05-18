@@ -38,7 +38,7 @@ $(function() {
 				expect(feed.url).toBeDefined();
 
 				/*if empty the value should be falsy. 
-				Other option: 
+				Other options: 
 				- .toBeTruthy instead of .not.toBeFalsy()
 				- a custom marker to check whether the url starts with http:// or https:// */
 				expect(feed.url).not.toBeFalsy();
@@ -55,7 +55,7 @@ $(function() {
 			allFeeds.forEach(function(feed){
 				expect(feed.name).toBeDefined();
 
-				//if empty the value should be falsy.
+				//see above 
 				expect(feed.name).not.toBeFalsy();
 			});
 		});
@@ -98,11 +98,12 @@ $(function() {
 			menuIcon.click();
 			className = $('body').attr('class');
 			expect(className).toBe('menu-hidden');
-		})
+		});
 	});
 
 	/* TODO: Write a new test suite named "Initial Entries" */
 
+	describe('Initial Entries', function() {
 		/* TODO: Write a test that ensures when the loadFeed
 		 * function is called and completes its work, there is at least
 		 * a single .entry element within the .feed container.
@@ -110,10 +111,43 @@ $(function() {
 		 * the use of Jasmine's beforeEach and asynchronous done() function.
 		 */
 
-	/* TODO: Write a new test suite named "New Feed Selection"
+		beforeEach( function(done) {
+			loadFeed(0, done);
 
+		});
+
+		it('should load initial value', function(done) {
+			var container = $('.entry').html();
+
+			expect(container).not.toBeFalsy();
+			done();
+		})
+	});
+
+	/* TODO: Write a new test suite named "New Feed Selection" */
+
+
+	describe('New Feed Selection', function () {
 		/* TODO: Write a test that ensures when a new feed is loaded
 		 * by the loadFeed function that the content actually changes.
 		 * Remember, loadFeed() is asynchronous.
 		 */
+
+		var FeedText, TestFeed;
+
+		beforeEach( function(done) {
+			loadFeed(1, done);
+			TestFeed = ($('.entry').html());	
+		});
+
+		it('should load a different feed', function(done) {
+			loadFeed(0); 
+			FeedText = ($('.entry').html());
+			
+			expect(TestFeed).not.toEqual(FeedText);
+
+			done();
+		});
+	});
+
 }());
