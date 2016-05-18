@@ -24,11 +24,11 @@ Used resources
 
 * [**handlebars**](http://handlebarsjs.com/)
 * [**jquery**](https://jquery.com/)
-* [**Google Loader API**](https://developers.google.com/loader/), used for loading the RSS feeds
+* [**Jamine JS**](http://jasmine.github.io/2.1/introduction.htmls)
 
 ### APIs
 
-* [**google maps api**](https://developers.google.com/maps/?hl=en)
+* [**Google Loader API**](https://developers.google.com/loader/), used for loading the RSS feeds
 
 
 Discussions about tests
@@ -94,9 +94,9 @@ Otherwise I could loop all elements, push their results in an array and check wh
 Repository 
 ----
 
-* the [working project](https://github.com/guillaumesimler/nanofe8)
+* the [working project](https://github.com/guillaumesimler/nanofep8)
 
 License
 ----
 
-The **current version** is under [_MIT License_](https://github.com/guillaumesimler/nanofe8/blob/master/LICENSE.txt) 
+The **current version** is under [_MIT License_](https://github.com/guillaumesimler/nanofep8/blob/master/LICENSE.txt) 
